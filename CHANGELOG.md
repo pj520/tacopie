@@ -1,6 +1,76 @@
 # Changelog
 
 
+## [v3.2.0](https://github.com/Cylix/tacopie/releases/tag/3.2.0)
+### Tag
+`3.2.0`
+### Date
+November 13th, 2017
+### Changes
+* fork support: allow set_default_io_service to take nullptr. In order to safely fork, call set_default_io_service(nullptr) to make sure the io_service destructor is called and all underlying threads joined.
+* fix: timeout for connection not working due to invalid param to select, now working
+* improvement: make sure socket is in blocking mode before connection (#32) as it differs from one OS to another
+* improvement: check for non-blocking connect errors with getsockopt to avoid connect reporting a successful connection followed by a call to disconnection handler (now connect report a failed connection as expected).
+### Additions
+* ipv6 support (connect, bind and accept operations, on tcp_server and tcp_client)
+### Removals
+None
+
+
+
+
+## [v3.1.0](https://github.com/Cylix/tacopie/releases/tag/3.1.0)
+### Tag
+`3.1.0`
+### Date
+November 2nd, 2017
+### Changes
+* Improvement: For windows, if port is 0, use the default AF_INET windows API behavior (bind to first port available). Behavior on unix is unchanged (is unix socket).
+* CMake fix: Remove explicit STATIC in add_library call so dynamic libraries can be built with -DBUILD_SHARED_LIBS=ON
+### Additions
+* Visual Studio C++ solution
+### Removals
+None
+
+
+
+
+## [v3.0.1](https://github.com/Cylix/tacopie/releases/tag/3.0.1)
+### Tag
+`3.0.1`
+### Date
+September 26th, 2017
+### Changes
+* Fix some compilation issues on windows
+### Additions
+None.
+### Removals
+* Private, Protected and Static functions from doxygen documentation
+
+
+
+
+
+## [v3.0.0](https://github.com/Cylix/tacopie/releases/tag/3.0.0)
+### Tag
+`3.0.0`
+### Date
+September 20th, 2017
+### Changes
+* clear pending read and write requests on disconnection
+* io_service access
+* ability to modify number of io service worker at runtime
+### Additions
+* doxygen documentation
+* connection timeout if requested (for `tcp_socket` and `tcp_client`)
+* ability to change the number of `io_service` workers (or `thread_pool` threads) at runtime
+### Removals
+None.
+
+
+
+
+
 ## [v2.4.4](https://github.com/Cylix/tacopie/releases/tag/2.4.4)
 ### Tag
 `2.4.4`
